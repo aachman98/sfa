@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == "$pass") {
 			$sql = "SELECT auth FROM account WHERE email='$email'";
 			if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == "1") {
-				$sql = "SELECT name FROM spv WHERE email='$email'";
-				echo mysqli_fetch_all(mysqli_query($con, $sql));
+				$sql = "SELECT name FROM account WHERE email='$email'";
+				echo mysqli_fetch_array(mysqli_query($con, $sql))[0];
 			} else {
 				echo "auth";
 			}
