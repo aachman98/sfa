@@ -3,14 +3,13 @@
 require_once('dbconnect.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	$reg = json_decode($_POST['json'], true);
-	$email = $reg['email'];
+	$email = $_POST['email'];
 	$sql = "SELECT COUNT(email) FROM account WHERE email='$email'";
 	if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == '0') {
-		$pass = $reg['pass'];
-		$name = $reg['name'];
-		$contact = $reg['contact'];
-		$personname = $reg['personname'];
+		$pass = $_POST['pass'];
+		$name = $_POST['name'];
+		$contact = $_POST['contact'];
+		$personname = $_POST['personname'];
 		$sql = "INSERT INTO account VALUES ('$email', '$pass', '$personname', '$name', '$contact', false)";
 		if (mysqli_query($con, $sql)) {
 			require_once('smtpreg.php');
