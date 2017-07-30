@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$name = $reg['name'];
 		$contact = $reg['contact'];
 		$personname = $reg['personname'];
-		$sql = "INSERT INTO account VALUES ('$email', '$pass', '$personname', '$name', '$contact')";
+		$sql = "INSERT INTO account VALUES ('$email', '$pass', '$personname', '$name', '$contact', false)";
 		if (mysqli_query($con, $sql)) {
 			require_once('smtpreg.php');
 		}
