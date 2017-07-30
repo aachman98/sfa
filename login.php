@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == "$pass") {
 			$sql = "SELECT auth FROM account WHERE email='$email'";
 			if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == "1") {
-				$sql = "SELECT * FROM spv,account WHERE email=$email AND spv.name=account.name";
+				$sql = "SELECT * FROM spv,account WHERE email='$email' AND spv.name=account.name";
 				echo json_encode(mysqli_fetch_assoc(mysqli_query($con, $sql)));
 			} else {
 				echo "auth";
