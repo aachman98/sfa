@@ -28,11 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$sql = "SELECT auth FROM account WHERE email='$email'";
 			if (mysqli_fetch_array(mysqli_query($con, $sql))[0] == "1") {
 				$sql = "SELECT spvid,wtid,spv.name,progress FROM spv,account WHERE email='$email' AND spv.name=account.name";
-				$output = array();
-				while ($result = mysqli_fetch_assoc(mysqli_query($con, $sql))) {
-					array_push($output, $result);
-				}
-				echo json_encode($output);
+				echo json_encode(mysqli_fetch_all(mysqli_query($con, $sql), true));
 			} else {
 				echo "auth";
 			}
